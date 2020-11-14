@@ -1,0 +1,7 @@
+#!/bin/bash
+
+FULLDATE=date +%F
+
+find /home/ubuntu/audios/ -iname 'audio*' -mtime +2 -exec bash -c ' echo "{} - " date -ru {} rm -rf {} ' \; | xargs > deleted-files-$FULLDATE.log
+echo "Audio files older than 48hrs have been deleted"
+echo"Log File has been created"
