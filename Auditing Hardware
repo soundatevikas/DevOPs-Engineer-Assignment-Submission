@@ -1,0 +1,25 @@
+#!/bin/bash
+
+
+OS_VERSION=$(cat /etc/redhat-release)
+KernalVersion=$(uname -r)
+CPU_CORES=$(cat /proc/cpuinfo |grep -i 'cpu cores')
+CPU_CLOCKSPEED=$(lscpu | egrep -i 'cpu mhz')
+ARCH=$(lscpu | grep -i 'Architecture')
+RAM=$(free |grep Mem |awk '{print $3/$2 * 100.0}')
+#NETWORK_BANDWIDTH=$(vnstat -l)
+OS_FIREWALL=$(netstat -tulnp)
+NETWORK_FIREWALL=$(firewall-cmd --list-all | grep -E 'ports|protocols')
+DISK_INFO=$(df -h)
+
+echo 'OS VERSION'        :"$OS_VERSION"
+echo 'KernelVersion'     :"$KernalVersion"
+echo 'CPU_CORES'         :"$CPU_CORES"
+echo 'CPU_CLOCKSPEED'    :"$CPU_CLOCKSPEED"
+echo 'ARCH'              :"$ARCH"
+echo 'RAM'               :"$RAM"
+echo 'OS_FIREWALL'       :"$OS_FIREWALL"
+echo 'NETWORK_FIREWALL'  :"$NETWORK_FIREWALL"
+echo 'DISK_INFO'         :"$DISK_INFO"
+echo 'NETWORK_BANDWIDTH' :"$NETWORK_BANDWIDTH"
+
