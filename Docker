@@ -1,0 +1,22 @@
+Docker
+
+mkdir Dockerfile
+cd Dockerfile
+touch Dockerfile
+vim Dockerfile
+
+##adding instructions in Dockerfile
+FROM ubuntu:16.04
+
+MAINTAINER admin
+
+RUN apt-get update 
+RUN apt install telnet -y
+RUN apt install curl -y
+RUN apt install ffmpeg -y
+
+##building the dockerfile to create image
+docker build -t myimage /Dockerfile
+
+##Running image to create container
+docker run -it myimage bash
